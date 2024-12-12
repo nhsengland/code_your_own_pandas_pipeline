@@ -2,7 +2,7 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_NAME = code-your-own-pandas-pipeline
+PROJECT_NAME = code_your_own_pandas_pipeline
 PYTHON_VERSION = 3.12
 PYTHON_INTERPRETER = python
 
