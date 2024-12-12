@@ -78,6 +78,26 @@ branch:
 	fi
 
 
+## Create test files for all python files in the project
+.PHONY: create_tests
+create_tests:
+	@find code_your_own_pandas_pipeline -type f -name "*.py" | while read file; do \
+		if [ $$(basename $$file) != "__init__.py" ]; then \
+			new_path=tests/unittests/$$(echo $$file | sed 's|^[^/]*/||' | awk -F/ '{for(i=1;i<=NF;i++)$$i="test_"$$i; print}' OFS=/); \
+			mkdir -p $$(dirname $$new_path); \
+			if [ ! -f $$new_path ]; then \
+				touch $$new_path; \
+				echo "\"\"\"\nTests for $$(echo $$file | sed 's|/|.|g' | sed 's|\.py||')\n\"\"\"\nimport pytest\n" >> $$new_path; \
+				echo "import $$(echo $$file | sed 's|/|.|g' | sed 's|\.py||')" >> $$new_path; \
+				echo "\n\nclass TestExample:" >> $$new_path; \
+				echo "    \"\"\"Example test class\"\"\"" >> $$new_path; \
+				echo "    def test_example(self):" >> $$new_path; \
+				echo "        \"\"\"Example test case\"\"\"" >> $$new_path; \
+				echo "        assert True" >> $$new_path; \
+			fi \
+		fi \
+	done
+
 #################################################################################
 # PROJECT DATA                                                                  #
 #################################################################################
