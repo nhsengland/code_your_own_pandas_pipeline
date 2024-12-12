@@ -22,11 +22,13 @@ from code_your_own_pandas_pipeline.config import RAW_DATA_DIR
 def read_mapping_data(file_path: Optional[Path] = None) -> pd.DataFrame:
     """
     Reads mapping data from a CSV file and returns it as a pandas DataFrame.
+
     Parameters
     ----------
     file_path : Optional[Path], optional
         The path to the CSV file containing the mapping data. If not provided,
         the default path "RAW_DATA_DIR/Mapping.csv" will be used.
+
     Returns
     -------
     pd.DataFrame
@@ -40,30 +42,51 @@ def read_mapping_data(file_path: Optional[Path] = None) -> pd.DataFrame:
     return pd.read_csv(file_path)
 
 
-def read_practice_level_crosstab_files(
-    directory: Optional[Path] = None, file_starts_with: Optional[str] = "Practice_Level_Crosstab"
-) -> list[pd.DataFrame]:
+def concatenate_practice_level_data(practice_level_datasets: list[pd.DataFrame]) -> pd.DataFrame:
     """
-    Reads all files in the specified directory that start with the given prefix
-    and returns them as a list of pandas DataFrames.
+    Concatenates the practice data and returns the result.
 
     Parameters
     ----------
-    directory : Optional[Path], optional
-        The directory containing the files. If not provided, the default path "RAW_DATA_DIR" will be used.
-    file_starts_with : Optional[str], optional
-        The prefix that the filenames should start with. Default is "Practice_Level_Crosstab".
+    practice_level_datasets : list[pd.DataFrame]
+        The practice data to concatenate.
     Returns
     -------
-    list[pd.DataFrame]
-        A list of DataFrames, each containing the data from one of the files.
+    pd.DataFrame
+        The concatenated DataFrame.
+    """
+    logger.info("Concatenating practice data")
+
+    return pd.concat(practice_level_datasets, ignore_index=True)
+
+
+def read_practice_level_data(
+    directory: Optional[Path] = None, file_starts_with: Optional[str] = "Practice_Level_Crosstab"
+) -> pd.DataFrame:
+    """
+    Reads and concatenates practice level data from CSV files in the specified directory.
+
+    Parameters
+    ----------
+    directory : Optional[Path], default None
+        The directory to search for CSV files. If None, uses RAW_DATA_DIR.
+    file_starts_with : Optional[str], default "Practice_Level_Crosstab"
+        The prefix of the CSV files to read.
+
+    Returns
+    -------
+    pd.DataFrame
+        A DataFrame containing the concatenated practice level data from the CSV files.
+    
     Raises
     ------
     AssertionError
         If no files are found in the specified directory with the given prefix.
-
+    
+    Notes
+    -----
+    This function uses the `tqdm` library to display a progress bar while reading files.
     """
-
     if directory is None:
         directory = RAW_DATA_DIR
 
@@ -77,4 +100,5 @@ def read_practice_level_crosstab_files(
         logger.info(f"Reading file {file_path}")
         dataframes.append(pd.read_csv(file_path))
 
-    return dataframes
+    practice_level_data = concatenate_practice_level_data(dataframes)
+    return practice_level_data
