@@ -7,9 +7,10 @@ from pathlib import Path
 from loguru import logger
 
 from code_your_own_pandas_pipeline import aggregations as agg
-from code_your_own_pandas_pipeline import data_in, plots, processing
+from code_your_own_pandas_pipeline import data_in, plots, processing, utils
 
 
+@utils.timeit
 def main(_save_interim_output: bool = False) -> None:
     """
     Main function to run the GP Appointment Data Pipeline.
@@ -23,7 +24,12 @@ def main(_save_interim_output: bool = False) -> None:
     -------
     None
     """
-    logger.info("Starting the GP Appointment Data Pipeline")
+    logger.level("START", no=15, color="<green><bold>")
+    logger.log("START", "Starting the GP Appointment Data Pipeline")
+
+    data_in.download_and_extract_zip(
+        "https://files.digital.nhs.uk/A5/B4AB19/Practice_Level_Crosstab_Sep_24.zip"
+    )
 
     mapping_data = data_in.read_mapping_data()
 
