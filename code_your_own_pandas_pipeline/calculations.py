@@ -14,8 +14,9 @@ calculate_appointment_columns(practice_level_pivot: pd.DataFrame) -> pd.DataFram
 """
 
 from typing import Optional
-from matplotlib import axis
+
 import pandas as pd
+from matplotlib import axis
 
 # from loguru import logger
 
