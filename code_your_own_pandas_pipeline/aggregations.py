@@ -66,7 +66,7 @@ def pivot_practice_level_data(
     if not index:
         index = ["APPOINTMENT_MONTH_START_DATE", *AGG_COLS]
     if not rename_columns:
-        rename_columns = {"DNA": "DID_NOT_ATTEND", "Attended": "ATTENDED"}
+        rename_columns = {"DNA": "DID_NOT_ATTEND", "Attended": "ATTENDED", "Unknown": "UNKNOWN"}
 
     logger.info("Pivoting practice level data")
     practice_level_pivot = practice_level_data.pivot(index=index, columns=columns, values=values)
@@ -122,7 +122,7 @@ def summarize_monthly_aggregate_appointments(
 
     monthly_aggregate_appointments = (
         practice_level_pivot.groupby(["APPOINTMENT_MONTH_START_DATE", *agg_cols])
-        .agg({"ATTENDED": "sum", "DID_NOT_ATTEND": "sum"})
+        .agg({"ATTENDED": "sum", "DID_NOT_ATTEND": "sum", "UNKNOWN": "sum"})
         .reset_index()
     )
 

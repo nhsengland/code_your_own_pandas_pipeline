@@ -61,7 +61,7 @@ def point_monthly_attd_rate_by(summary_df: pd.DataFrame, agg_by: str) -> FacetGr
         title=f"Monthly Attendance Rate by {agg_by}",
         xlabel="Month Start Date",
         ylabel="Attendance Rate",
-        ylim=(0.85, 1.0),
+        # ylim=(0.85, 1.0),
     )
 
     return plt

@@ -13,12 +13,16 @@ calculate_appointment_columns(practice_level_pivot: pd.DataFrame) -> pd.DataFram
 
 """
 
+from typing import Optional
+from matplotlib import axis
 import pandas as pd
 
 # from loguru import logger
 
 
-def calculate_total_appointments(practice_level_pivot) -> pd.DataFrame:
+def calculate_total_appointments(
+    practice_level_pivot: pd.DataFrame, appointment_cols: Optional[list[str]] = None
+) -> pd.DataFrame:
     """
     Calculate the total number of appointments by summing attended and did not attend appointments.
     Parameters
@@ -30,14 +34,15 @@ def calculate_total_appointments(practice_level_pivot) -> pd.DataFrame:
     pd.DataFrame
         The input DataFrame with an additional column "TOTAL_APPOINTMENTS" which is the sum of "ATTENDED" and "DID_NOT_ATTEND".
     """
-    # logger.info("Calculating total appointments")
-    practice_level_pivot[["ATTENDED", "DID_NOT_ATTEND"]] = practice_level_pivot[
-        ["ATTENDED", "DID_NOT_ATTEND"]
-    ].fillna(0, inplace=False)
+    if not appointment_cols:
+        appointment_cols = ["ATTENDED", "DID_NOT_ATTEND", "UNKNOWN"]
 
-    practice_level_pivot["TOTAL_APPOINTMENTS"] = (
-        practice_level_pivot["ATTENDED"] + practice_level_pivot["DID_NOT_ATTEND"]
+    # logger.info("Calculating total appointments")
+    practice_level_pivot[appointment_cols] = practice_level_pivot[appointment_cols].fillna(
+        0, inplace=False
     )
+
+    practice_level_pivot["TOTAL_APPOINTMENTS"] = practice_level_pivot[appointment_cols].sum(axis=1)
 
     return practice_level_pivot
 
