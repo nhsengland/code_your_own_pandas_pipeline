@@ -77,12 +77,12 @@ def read_practice_level_data(
     -------
     pd.DataFrame
         A DataFrame containing the concatenated practice level data from the CSV files.
-    
+
     Raises
     ------
     AssertionError
         If no files are found in the specified directory with the given prefix.
-    
+
     Notes
     -----
     This function uses the `tqdm` library to display a progress bar while reading files.
