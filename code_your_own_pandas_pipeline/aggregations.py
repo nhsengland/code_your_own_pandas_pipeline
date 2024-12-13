@@ -11,7 +11,6 @@ Functions:
     batch_summarize_monthly_aggregate_appointments(practice_level_pivot: pd.DataFrame, agg_cols: Optional[list[str]] = None, add_rate_cols: bool = True) -> Dict[str, pd.DataFrame]:
 """
 
-
 from typing import Dict, Optional
 
 import pandas as pd
