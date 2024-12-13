@@ -56,6 +56,9 @@ def tidy_practice_level_data(
     logger.info('Change "Unknown" to missing data')
     practice_level_data.replace("Unknown", None, inplace=True)
 
+    logger.info("Dropping rows where APPT_STATUS is missing")
+    practice_level_data.dropna(subset=["APPT_STATUS"], inplace=True)
+
     logger.info("Convert APPOINTMENT_MONTH_START_DATE to datetime")
     practice_level_data["APPOINTMENT_MONTH_START_DATE"] = pd.to_datetime(
         practice_level_data["APPOINTMENT_MONTH_START_DATE"], format="%d%b%Y"
