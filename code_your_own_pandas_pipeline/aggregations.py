@@ -1,6 +1,16 @@
 """
-_summary_
+This module provides functions to pivot and summarize practice-level appointment data.
+
+Functions:
+    pivot_practice_level_data(practice_level_data: pd.DataFrame, index: Optional[list[str]] = None, columns="APPT_STATUS", values="COUNT_OF_APPOINTMENTS", rename_columns: Optional[dict[str, str]] = None) -> pd.DataFrame:
+
+    summarize_monthly_appointment_status(practice_level_data: pd.DataFrame) -> pd.DataFrame:
+
+    summarize_monthly_aggregate_appointments(practice_level_pivot: pd.DataFrame, agg_cols: Optional[list[str]] = None, add_rate_cols: bool = True) -> pd.DataFrame:
+
+    batch_summarize_monthly_aggregate_appointments(practice_level_pivot: pd.DataFrame, agg_cols: Optional[list[str]] = None, add_rate_cols: bool = True) -> Dict[str, pd.DataFrame]:
 """
+
 
 from typing import Dict, Optional
 
