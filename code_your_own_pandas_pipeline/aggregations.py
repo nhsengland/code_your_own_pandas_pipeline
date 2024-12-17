@@ -26,8 +26,6 @@ def pivot_practice_level_data(practice_data: pd.DataFrame) -> pd.DataFrame:
 
     logger.warning("This function is not yet implemented.")
 
-    return placeholder_df
-
 
 def summarize_monthly_gp_appointments(pivot_practice_data: pd.DataFrame) -> pd.DataFrame:
     """
@@ -47,8 +45,6 @@ def summarize_monthly_gp_appointments(pivot_practice_data: pd.DataFrame) -> pd.D
 
     logger.warning("This function is not yet implemented.")
 
-    return placeholder_df
-
 
 def summarize_monthly_region_appointments(pivot_practice_data: pd.DataFrame) -> pd.DataFrame:
     """
@@ -67,5 +63,3 @@ def summarize_monthly_region_appointments(pivot_practice_data: pd.DataFrame) -> 
     logger.info("Summarizing the monthly region appointments.")
 
     logger.warning("This function is not yet implemented.")
-
-    return placeholder_df

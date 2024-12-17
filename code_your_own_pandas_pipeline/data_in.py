@@ -1,11 +1,10 @@
 """
-This module contains the function to read the mapping and practice crosstab data from the data 
+This module contains the function to read the mapping and practice crosstab data from the data
 folder.
 """
+
 import pandas as pd
 from loguru import logger
-
-placeholder_df = pd.DataFrame()
 
 
 def read_mapping_data() -> pd.DataFrame:
@@ -21,8 +20,6 @@ def read_mapping_data() -> pd.DataFrame:
 
     logger.warning("This function is not yet implemented.")
 
-    return placeholder_df
-
 
 def read_practice_crosstab_data() -> pd.DataFrame:
     """
@@ -36,8 +33,6 @@ def read_practice_crosstab_data() -> pd.DataFrame:
     logger.info(f"Reading practice crosstab data from {""}")
 
     logger.warning("This function is not yet implemented.")
-
-    return placeholder_df
 
 
 if __name__ == "__main__":

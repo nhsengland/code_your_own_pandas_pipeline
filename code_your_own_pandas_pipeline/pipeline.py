@@ -2,10 +2,10 @@
 Main pipeline for the code_your_own_pandas_pipeline package.
 """
 
+import pandas as pd
 from loguru import logger
 
-from code_your_own_pandas_pipeline import aggregations, config, data_in, plots, processing
-
+from code_your_own_pandas_pipeline import aggregations, data_in, plots, processing
 
 placeholder_df = pd.DataFrame()
 
@@ -35,6 +35,7 @@ def main() -> None:
     plots.plot_monthly_region_appointments(placeholder_df, "placeholder_str")
 
     logger.success("GP Appointment Data Pipeline Completed")
+
 
 if __name__ == "__main__":
     main()

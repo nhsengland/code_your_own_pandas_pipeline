@@ -26,8 +26,6 @@ def tidy_practice_level_data(practice_data: pd.DataFrame) -> pd.DataFrame:
 
     logger.warning("This function is not yet implemented.")
 
-    return placeholder_df
-
 
 def merge_mapping_and_practice_data(
     mapping_data: pd.DataFrame, practice_data: pd.DataFrame
@@ -50,5 +48,3 @@ def merge_mapping_and_practice_data(
     logger.info("Merging the mapping and practice data.")
 
     logger.warning("This function is not yet implemented.")
-
-    return placeholder_df
