@@ -106,8 +106,9 @@ create_tests:
 .PHONY: get_data
 get_data:
 	mkdir -p data/raw
-	wget -O data/raw/Practice_Level_Crosstab_Sep_24.zip https://files.digital.nhs.uk/A5/B4AB19/Practice_Level_Crosstab_Sep_24.zip
-	unzip -o data/raw/Practice_Level_Crosstab_Sep_24.zip -d data/raw
+	wget -O data/raw/_data.zip https://files.digital.nhs.uk/A5/B4AB19/Practice_Level_Crosstab_Sep_24.zip
+	unzip -o data/raw/_data.zip -d data/raw
+	rm data/raw/_data.zip
 
 
 #################################################################################
