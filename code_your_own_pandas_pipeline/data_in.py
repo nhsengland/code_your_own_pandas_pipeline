@@ -17,7 +17,6 @@ from typing import Callable, Optional, Union
 import pandas as pd
 import requests
 from loguru import logger
-from matplotlib.pylab import f
 from tqdm import tqdm
 
 from code_your_own_pandas_pipeline.config import RAW_DATA_DIR

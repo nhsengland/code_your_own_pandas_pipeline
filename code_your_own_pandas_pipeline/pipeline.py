@@ -1,5 +1,12 @@
 """
-_summary_
+Main pipeline script to run the GP Appointment Data Pipeline.
+
+This script downloads and processes GP appointment data, summarises the data, and creates plots.
+
+Functions
+---------
+main(_save_interim_output: bool = False) -> None
+    Main function to run the GP Appointment Data Pipeline.
 """
 
 from pathlib import Path

@@ -1,5 +1,5 @@
 """
-_summary_
+Configuration file for the code_your_own_pandas_pipeline package.
 """
 
 from pathlib import Path

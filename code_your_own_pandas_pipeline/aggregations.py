@@ -41,27 +41,37 @@ def pivot_practice_level_data(
     rename_columns: Optional[dict[str, str]] = None,
 ) -> pd.DataFrame:
     """
-    Pivot the practice level data to summarize appointment statuses.
+    Pivot the practice level data.
 
-    Parameters:
-    practice_level_data (pd.DataFrame): A DataFrame containing practice level data with columns:
-        - "APPOINTMENT_MONTH_START_DATE"
-        - "GP_NAME"
-        - "SUPPLIER"
-        - "PCN_NAME"
-        - "SUB_ICB_LOCATION_NAME"
-        - "ICB_NAME"
-        - "REGION_NAME"
-        - "HCP_TYPE"
-        - "APPT_MODE"
-        - "NATIONAL_CATEGORY"
-        - "TIME_BETWEEN_BOOK_AND_APPT"
-        - "APPT_STATUS"
-        - "COUNT_OF_APPOINTMENTS"
+    Parameters
+    ----------
+    practice_level_data : pd.DataFrame
+        The DataFrame containing the practice level data.
+    index : list of str, optional
+        The columns to use as index for the pivot table. If None, defaults to [
+            "APPOINTMENT_MONTH_START_DATE",
+            "GP_NAME",
+            "SUPPLIER",
+            "PCN_NAME",
+            "SUB_ICB_LOCATION_NAME",
+            "ICB_NAME",
+            "REGION_NAME",
+            "HCP_TYPE",
+            "APPT_MODE",
+            "NATIONAL_CATEGORY",
+            "TIME_BETWEEN_BOOK_AND_APPT"
+        ].
+    columns : str, optional
+        The column to use for the pivot table columns, by default "APPT_STATUS".
+    values : str, optional
+        The column to use for the pivot table values, by default "COUNT_OF_APPOINTMENTS".
+    rename_columns : dict of str, str, optional
+        Dictionary to rename columns, by default None.
 
-    Returns:
-    pd.DataFrame: A pivoted DataFrame with appointment statuses as columns and the count of appointments as values.
-    The columns "DNA" and "Attended" are renamed to "DID_NOT_ATTEND" and "ATTENDED" respectively.
+    Returns
+    -------
+    pd.DataFrame
+        The pivoted DataFrame.
     """
     if not index:
         index = ["APPOINTMENT_MONTH_START_DATE", *AGG_COLS]
@@ -80,15 +90,21 @@ def pivot_practice_level_data(
 
 def summarize_monthly_appointment_status(practice_level_data: pd.DataFrame) -> pd.DataFrame:
     """
-    Summarizes the monthly appointment status by aggregating the count of appointments.
+    Summarize the monthly appointment status.
 
-    Args:
-        practice_level_data (pd.DataFrame): DataFrame containing appointment data with columns
-            "APPOINTMENT_MONTH_START_DATE", "APPT_STATUS", and "COUNT_OF_APPOINTMENTS".
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The DataFrame containing the appointment data.
+    date_column : str
+        The name of the column containing the date information.
+    status_column : str
+        The name of the column containing the appointment status.
 
-    Returns:
-        pd.DataFrame: A DataFrame with the aggregated count of appointments per month and status,
-            with columns "APPOINTMENT_MONTH_START_DATE", "Appointment Status", and "COUNT_OF_APPOINTMENTS".
+    Returns
+    -------
+    pd.DataFrame
+        A DataFrame summarizing the count of each appointment status per month.
     """
     logger.info("Summarizing monthly appointment status")
     month_and_status_appointments = (
@@ -107,15 +123,23 @@ def summarize_monthly_aggregate_appointments(
     add_rate_cols: bool = True,
 ) -> pd.DataFrame:
     """
-    Summarizes monthly aggregate appointments from a practice-level pivot DataFrame.
+    Summarize the monthly aggregate appointments.
 
-    Args:
-        practice_level_pivot (pd.DataFrame): The input DataFrame containing practice-level appointment data.
-        agg_cols (Optional[list[str]]): A list of additional columns to group by. Defaults to None.
-        add_rate_cols (bool): Whether to add rate columns to the output DataFrame. Defaults to True.
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The DataFrame containing the appointment data.
+    date_column : str
+        The name of the column containing the date information.
+    agg_column : str
+        The name of the column to aggregate.
+    aggfunc : str or function, default 'sum'
+        Aggregation function to apply to the agg_column.
 
-    Returns:
-        pd.DataFrame: A DataFrame with monthly aggregate appointments, including attended and did not attend counts.
+    Returns
+    -------
+    pd.DataFrame
+        A DataFrame summarizing the aggregated values per month.
     """
     if not agg_cols:
         agg_cols = []

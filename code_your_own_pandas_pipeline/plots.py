@@ -30,16 +30,19 @@ from code_your_own_pandas_pipeline.config import FIGURES_DIR
 def point_monthly_attd_rate_by(summary_df: pd.DataFrame, agg_by: str) -> FacetGrid:
     """
     Generates a point plot of monthly attendance rates, aggregated by a specified column.
+
     Parameters
     ----------
     summary_df : pd.DataFrame
         DataFrame containing the summary data with columns 'APPOINTMENT_MONTH_START_DATE' and 'ATTENDED_RATE'.
     agg_by : str
         The column name by which to aggregate the data for the plot.
+
     Returns
     -------
     FacetGrid
         A seaborn FacetGrid object representing the point plot.
+
     Raises
     ------
     AssertionError
@@ -70,16 +73,19 @@ def point_monthly_attd_rate_by(summary_df: pd.DataFrame, agg_by: str) -> FacetGr
 def violin_monthly_attd_rate_by(summary_df: pd.DataFrame, agg_by: str) -> FacetGrid:
     """
     Generates a point plot of monthly attendance rates, aggregated by a specified column.
+
     Parameters
     ----------
     summary_df : pd.DataFrame
         DataFrame containing the summary data with columns 'APPOINTMENT_MONTH_START_DATE' and 'ATTENDED_RATE'.
     agg_by : str
         The column name by which to aggregate the data for the plot.
+
     Returns
     -------
     FacetGrid
         A seaborn FacetGrid object representing the point plot.
+
     Raises
     ------
     AssertionError
@@ -111,6 +117,7 @@ def save_monthly_attendance_plot(
 ):
     """
     Save a monthly attendance plot to a specified directory.
+
     Parameters
     ----------
     plot : FacetGrid
@@ -119,6 +126,7 @@ def save_monthly_attendance_plot(
         The name of the column used for the plot.
     figures_path : Optional[Path], default=None
         The directory path where the plot will be saved. If None, a default directory is used.
+
     Returns
     -------
     None

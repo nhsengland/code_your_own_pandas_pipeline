@@ -26,10 +26,12 @@ def calculate_total_appointments(
 ) -> pd.DataFrame:
     """
     Calculate the total number of appointments by summing attended and did not attend appointments.
+    
     Parameters
     ----------
     practice_level_pivot : pd.DataFrame
         A DataFrame containing columns "ATTENDED" and "DID_NOT_ATTEND" representing the number of attended and missed appointments respectively.
+    
     Returns
     -------
     pd.DataFrame
@@ -51,10 +53,12 @@ def calculate_total_appointments(
 def calculate_did_not_attend_rate(practice_level_pivot) -> pd.DataFrame:
     """
     Calculate the rate of missed appointments.
+    
     Parameters
     ----------
     practice_level_pivot : pd.DataFrame
         A DataFrame containing columns "ATTENDED" and "DID_NOT_ATTEND" representing the number of attended and missed appointments respectively.
+    
     Returns
     -------
     pd.DataFrame
@@ -71,10 +75,12 @@ def calculate_did_not_attend_rate(practice_level_pivot) -> pd.DataFrame:
 def calculate_attended_rate(practice_level_pivot) -> pd.DataFrame:
     """
     Calculate the rate of attended appointments.
+    
     Parameters
     ----------
     practice_level_pivot : pd.DataFrame
         A DataFrame containing columns "ATTENDED" and "DID_NOT_ATTEND" representing the number of attended and missed appointments respectively.
+    
     Returns
     -------
     pd.DataFrame
@@ -91,10 +97,12 @@ def calculate_attended_rate(practice_level_pivot) -> pd.DataFrame:
 def calculate_appointment_columns(practice_level_pivot) -> pd.DataFrame:
     """
     Calculate the total number of appointments, the rate of missed appointments, and the rate of attended appointments.
+    
     Parameters
     ----------
     practice_level_pivot : pd.DataFrame
         A DataFrame containing columns "ATTENDED" and "DID_NOT_ATTEND" representing the number of attended and missed appointments respectively.
+    
     Returns
     -------
     pd.DataFrame
