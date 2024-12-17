@@ -33,8 +33,3 @@ def read_practice_crosstab_data() -> pd.DataFrame:
     logger.info(f"Reading practice crosstab data from {""}")
 
     logger.warning("This function is not yet implemented.")
-
-
-if __name__ == "__main__":
-    read_mapping_data().head()
-    read_practice_crosstab_data().head()
