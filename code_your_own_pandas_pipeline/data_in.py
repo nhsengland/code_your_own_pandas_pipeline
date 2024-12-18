@@ -12,7 +12,7 @@ read_practice_level_crosstab_files(directory: Optional[Path] = None) -> list[pd.
 import os
 import zipfile
 from pathlib import Path
-from typing import Callable, Optional, Union
+from typing import Callable, Optional
 
 import pandas as pd
 import requests
